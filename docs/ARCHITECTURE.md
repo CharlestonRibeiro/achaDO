@@ -434,6 +434,18 @@ Esta seção detalha como as [regras de execução autônoma do PRD](./PRD.md#ex
 
 **Auto-start no Windows.** Durante a instalação, o `.exe` é registrado em `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` via `winreg`. Isso garante que o processo suba automaticamente com o login do usuário, sem privilégios de administrador (chave `HKCU`, não `HKLM`).
 
+**Horário e fuso do ciclo diário.** O job é agendado por padrão para **12:00 no fuso `America/Sao_Paulo`** (horário de Brasília), independentemente do fuso configurado no sistema operacional do usuário. O fuso é sempre especificado explicitamente no APScheduler — nunca inferido do SO. O usuário pode alterar o horário pela tela de Configurações; o fuso permanece fixo em `America/Sao_Paulo`.
+
+```python
+scheduler.add_job(
+    pipeline_diario,
+    trigger=CronTrigger(hour=12, minute=0, timezone="America/Sao_Paulo"),
+    id="ciclo_diario",
+    coalesce=True,
+    misfire_grace_time=None,
+)
+```
+
 **Recuperação de jobs perdidos.** O APScheduler é configurado com:
 - `coalesce=True` — se múltiplos disparos foram perdidos (ex.: PC ficou desligado vários dias), executa apenas uma vez ao retomar, não N vezes.
 - `misfire_grace_time=None` — remove o limite de tempo para considerar um job como "expirado"; o job perdido é sempre executado ao inicializar, independentemente de quantas horas se passaram.

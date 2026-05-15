@@ -120,39 +120,41 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R19.** Se o computador estava desligado no horário do ciclo programado, o job é executado imediatamente ao ligar o PC e iniciar o aplicativo — mesmo que seja horas depois do horário original. Nenhum dia útil é perdido por conta de o PC ter ficado desligado.
 
-**R20.** O ciclo diário executa **no máximo uma vez por dia**. Múltiplos reinicios do PC no mesmo dia não disparam múltiplas execuções. Execuções manuais pelo Dashboard não contam como o ciclo automático do dia.
+**R20.** O ciclo diário é executado **ao meio-dia no horário de Brasília (12:00 BRT)** por padrão. O usuário pode alterar esse horário na tela de Configurações. O horário é sempre interpretado no fuso horário de Brasília (`America/Sao_Paulo`), independentemente do fuso configurado no computador.
 
-**R21.** Falhas em um ciclo não impedem o ciclo seguinte. O aplicativo nunca trava em estado de erro — registra a falha, sinaliza no ícone da bandeja e segue em espera.
+**R21.** O ciclo diário executa **no máximo uma vez por dia**. Múltiplos reinicios do PC no mesmo dia não disparam múltiplas execuções. Execuções manuais pelo Dashboard não contam como o ciclo automático do dia.
+
+**R22.** Falhas em um ciclo não impedem o ciclo seguinte. O aplicativo nunca trava em estado de erro — registra a falha, sinaliza no ícone da bandeja e segue em espera.
 
 ---
 
 ### Privacidade e dados
 
-**R22.** Todos os dados (banco, índice, histórico, termos) ficam exclusivamente no computador do usuário. Não há servidor central, nuvem ou coleta de dados.
+**R23.** Todos os dados (banco, índice, histórico, termos) ficam exclusivamente no computador do usuário. Não há servidor central, nuvem ou coleta de dados.
 
-**R23.** A senha do SMTP é armazenada no chaveiro nativo do sistema operacional (Credential Manager no Windows). Nunca é gravada em texto claro no banco ou em arquivos de configuração.
+**R24.** A senha do SMTP é armazenada no chaveiro nativo do sistema operacional (Credential Manager no Windows). Nunca é gravada em texto claro no banco ou em arquivos de configuração.
 
-**R24.** As únicas conexões externas realizadas pelo AchaDO são: requisições aos portais dos Diários Oficiais (entrada de dados) e envio de e-mail via SMTP configurado pelo usuário (saída de notificações).
+**R25.** As únicas conexões externas realizadas pelo AchaDO são: requisições aos portais dos Diários Oficiais (entrada de dados) e envio de e-mail via SMTP configurado pelo usuário (saída de notificações).
 
 ---
 
 ### Fora do escopo
 
-**R25.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
+**R26.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
 
-**R26.** Diários Oficiais municipais (capitais ou demais municípios).
+**R27.** Diários Oficiais municipais (capitais ou demais municípios).
 
-**R27.** Diários da Justiça (federal, estaduais ou de tribunais superiores).
+**R28.** Diários da Justiça (federal, estaduais ou de tribunais superiores).
 
-**R28.** Versão SaaS, hospedada ou multi-tenant.
+**R29.** Versão SaaS, hospedada ou multi-tenant.
 
-**R29.** Análise ou interpretação jurídica do conteúdo encontrado.
+**R30.** Análise ou interpretação jurídica do conteúdo encontrado.
 
-**R30.** Integração com plataformas pagas de monitoramento de Diários Oficiais.
+**R31.** Integração com plataformas pagas de monitoramento de Diários Oficiais.
 
-**R31.** Distribuição como serviço comercial.
+**R32.** Distribuição como serviço comercial.
 
-**R32.** Dependência de qualquer serviço pago para funcionar.
+**R33.** Dependência de qualquer serviço pago para funcionar.
 
 ---
 
