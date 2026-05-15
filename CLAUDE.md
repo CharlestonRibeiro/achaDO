@@ -72,7 +72,29 @@ Estas decisões não são óbvias e causam bugs silenciosos se ignoradas.
 - **Nunca commitar diretamente na `main`.** A `main` só recebe código via merge da `develop`. Commits diretos na `main` são proibidos.
 - **`develop` é a branch de trabalho padrão.** Todo desenvolvimento acontece na `develop` ou em branches de funcionalidade que partem dela.
 - **Uma branch por funcionalidade.** Nomenclatura: `feature/<nome-curto>` (ex.: `feature/dou-adapter`, `feature/fts5-indexer`). A branch parte de `develop` e volta para `develop` via merge.
-- **Commit a cada mudança.** Não acumular mudanças não commitadas. Mensagens em português, no imperativo (ex.: `Adiciona adapter do DOU`, `Corrige dedup por hash`).
+- **Commit a cada mudança.** Não acumular mudanças não commitadas.
+- **Um tipo por commit.** Cada commit deve ter um único propósito — não misturar feat com fix, docs com refactor, etc.
+- **Mensagens em inglês**, sucintas e no seguinte formato:
+  ```
+  <tipo>: <descrição curta no imperativo>
+  ```
+  Exemplos: `feat: add DOU HTML adapter`, `fix: correct regex fallback in monitor`, `docs: add folder structure to architecture`
+
+**Tipos de commit:**
+
+| Tipo | Quando usar |
+|---|---|
+| `feat` | Nova funcionalidade (serviço, endpoint, feature) |
+| `fix` | Correção de bug que causa comportamento inesperado |
+| `docs` | Mudanças apenas em documentação |
+| `test` | Criação ou alteração de testes |
+| `refactor` | Refatoração sem impacto em regras de negócio |
+| `style` | Formatação, indentação, espaços — sem mudança de lógica |
+| `perf` | Melhoria de performance |
+| `build` | Mudanças no processo de build ou dependências externas |
+| `chore` | Mudanças de configuração de desenvolvimento (lint, gitignore, etc.) |
+| `ci` | Mudanças em arquivos de configuração de CI |
+| `revert` | Reversão de commit anterior |
 - **Merge `develop` → `main` somente quando estável.** A `main` deve sempre estar em estado funcional com testes passando e cobertura em 100%.
 
 ```bash
