@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+.env
+
+# Distribuição / empacotamento
+dist/
+build/
+*.egg-info/
+*.egg
+*.spec
+
+# PyInstaller
+*.manifest
+
+# Banco de dados local
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Cache do coletor (dados de usuário, não entram no repo)
+cache/
+
+# Cobertura de testes
+.coverage
+htmlcov/
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
