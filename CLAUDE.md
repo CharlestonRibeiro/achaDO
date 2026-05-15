@@ -74,11 +74,11 @@ Estas decisões não são óbvias e causam bugs silenciosos se ignoradas.
 - **Uma branch por funcionalidade.** Nomenclatura: `feature/<nome-curto>` (ex.: `feature/dou-adapter`, `feature/fts5-indexer`). A branch parte de `develop` e volta para `develop` via merge.
 - **Commit a cada mudança.** Não acumular mudanças não commitadas.
 - **Um tipo por commit.** Cada commit deve ter um único propósito — não misturar feat com fix, docs com refactor, etc.
-- **Mensagens em inglês**, sucintas e no seguinte formato:
+- **Tipo em inglês, descrição em português**, sucintas e no seguinte formato:
   ```
-  <tipo>: <descrição curta no imperativo>
+  <tipo>: <descrição curta em português no imperativo>
   ```
-  Exemplos: `feat: add DOU HTML adapter`, `fix: correct regex fallback in monitor`, `docs: add folder structure to architecture`
+  Exemplos: `feat: adiciona adapter do DOU`, `fix: corrige fallback de regex no monitor`, `docs: adiciona estrutura de pastas à arquitetura`
 
 **Tipos de commit:**
 
