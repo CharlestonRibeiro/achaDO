@@ -69,19 +69,27 @@ Estas decisões não são óbvias e causam bugs silenciosos se ignoradas.
 
 ## Git
 
-- **Uma branch por funcionalidade.** Nomenclatura: `feature/<nome-curto>` (ex.: `feature/dou-adapter`, `feature/fts5-indexer`).
+- **Nunca commitar diretamente na `main`.** A `main` só recebe código via merge da `develop`. Commits diretos na `main` são proibidos.
+- **`develop` é a branch de trabalho padrão.** Todo desenvolvimento acontece na `develop` ou em branches de funcionalidade que partem dela.
+- **Uma branch por funcionalidade.** Nomenclatura: `feature/<nome-curto>` (ex.: `feature/dou-adapter`, `feature/fts5-indexer`). A branch parte de `develop` e volta para `develop` via merge.
 - **Commit a cada mudança.** Não acumular mudanças não commitadas. Mensagens em português, no imperativo (ex.: `Adiciona adapter do DOU`, `Corrige dedup por hash`).
-- **Merge na main após concluir a feature.** Fluxo: `feature/<nome>` → PR/merge → `main`. A `main` deve sempre estar em estado funcional.
-- **Nunca commitar sem testes passando** e cobertura em 100%.
+- **Merge `develop` → `main` somente quando estável.** A `main` deve sempre estar em estado funcional com testes passando e cobertura em 100%.
 
 ```bash
-# Fluxo padrão
+# Fluxo padrão para uma funcionalidade
+git checkout develop
 git checkout -b feature/<nome>
 # ... desenvolve, testa, documenta ...
 git add <arquivos>
 git commit -m "Verbo + descrição"
-git checkout main
+git checkout develop
 git merge feature/<nome>
+
+# Quando develop está estável: merge para main
+git checkout main
+git merge develop
+git push origin main
+git push origin develop
 ```
 
 ---
