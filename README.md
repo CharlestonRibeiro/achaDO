@@ -8,13 +8,21 @@ Chega de acessar dezenas de sites diferentes, baixar PDFs manualmente e fazer bu
 
 ## Prévia
 
-| Dashboard | Termos de busca |
+| Dashboard — Claro | Dashboard — Escuro |
 |---|---|
-| ![Dashboard](docs/design/screenshots/dashboard.png) | ![Termos](docs/design/screenshots/termos.png) |
+| ![Dashboard claro](docs/design/screenshots/dashboard.png) | ![Dashboard escuro](docs/design/screenshots/dashboard-dark.png) |
 
-| Achados | Configurações |
+| Termos de busca — Claro | Termos de busca — Escuro |
 |---|---|
-| ![Achados](docs/design/screenshots/achados.png) | ![Configurações](docs/design/screenshots/configuracoes.png) |
+| ![Termos claro](docs/design/screenshots/termos.png) | ![Termos escuro](docs/design/screenshots/termos-dark.png) |
+
+| Achados — Claro | Achados — Escuro |
+|---|---|
+| ![Achados claro](docs/design/screenshots/achados.png) | ![Achados escuro](docs/design/screenshots/achados-dark.png) |
+
+| Configurações — Claro | Configurações — Escuro |
+|---|---|
+| ![Configurações claro](docs/design/screenshots/configuracoes.png) | ![Configurações escuro](docs/design/screenshots/configuracoes-dark.png) |
 
 ## Documentação
 
