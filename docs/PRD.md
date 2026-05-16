@@ -82,6 +82,10 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R06.** Em falha de rede, o coletor tenta novamente com backoff exponencial (4 tentativas, intervalo inicial de 30 s). Se persistir, a fonte é marcada como `quebrada` e o ciclo continua.
 
+**R36.** Se o portal de uma fonte não tiver edição para a data do ciclo (fins de semana, feriados, ausência de publicação), a fonte é registrada com status `sem_publicacao` — distinto de `falhou` — e o ciclo encerra normalmente sem gerar erro. Nenhum digest é enviado por ausência de edição.
+
+**R37.** Entre requisições consecutivas ao mesmo portal, o Coletor aguarda um intervalo mínimo de 1 segundo para não sobrecarregar os servidores oficiais.
+
 ---
 
 ### Termos de busca
@@ -112,6 +116,8 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R17.** Todo domingo, após o ciclo diário, caso nenhum termo tenha gerado match durante os últimos sete dias, o AchaDO envia um e-mail de confirmação de vigilância informando que a aplicação está ativa e monitorando, mas não encontrou nenhuma ocorrência na semana. Esse e-mail não é enviado em semanas que já tiveram pelo menos um digest com achados.
 
+**R38.** Ao concluir um ciclo com pelo menos um match, o AchaDO exibe uma notificação nativa do sistema operacional (toast no Windows) com o resumo: número de achados e termos disparados. Ciclos sem matches não geram notificação nativa — apenas o e-mail de vigilância semanal, quando aplicável.
+
 ---
 
 ### Execução e agendamento
@@ -128,6 +134,12 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R23.** Falhas em um ciclo não impedem o ciclo seguinte. O aplicativo nunca trava em estado de erro — registra a falha, sinaliza no ícone da bandeja e segue em espera.
 
+**R39.** Cada instalação do AchaDO serve exatamente um usuário. Não há suporte a múltiplos perfis ou múltiplos e-mails de destino no MVP.
+
+**R40.** Na primeira execução, caso o SMTP ainda não esteja configurado, o ciclo diário coleta e indexa normalmente, mas não tenta enviar e-mail. O Dashboard exibe um aviso de configuração pendente. O AchaDO não abre o painel automaticamente — o usuário acessa pelo ícone da bandeja.
+
+**R41.** Não há atualização automática. O usuário baixa manualmente a nova versão do `.exe`. Ao inicializar com banco em versão anterior, as migrações de schema são aplicadas automaticamente antes de qualquer outra operação.
+
 ---
 
 ### Privacidade e dados
@@ -138,11 +150,21 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R26.** As únicas conexões externas realizadas pelo AchaDO são: requisições aos portais dos Diários Oficiais (entrada de dados) e envio de e-mail via SMTP configurado pelo usuário (saída de notificações).
 
+**R42.** O texto das publicações indexadas é mantido por 12 meses a partir da data de publicação; após esse período pode ser removido do banco. Matches e notificações são mantidos indefinidamente e nunca são apagados automaticamente.
+
 ---
 
 ### Interface
 
 **R35.** O painel local suporta **modo claro e modo escuro**. O tema é aplicado automaticamente conforme a preferência configurada no sistema operacional e pode ser alternado manualmente na tela de Configurações.
+
+**R43.** Os achados têm três estados: **novo** (match recém-encontrado, não visualizado), **lido** (o usuário abriu o detalhe do achado no painel) e **arquivado** (o usuário arquivou explicitamente). A transição "novo → lido" ocorre ao abrir o detalhe do achado. A transição "lido → arquivado" é manual. Achados arquivados permanecem no banco mas não aparecem na contagem do painel por padrão; um filtro permite exibi-los.
+
+**R44.** A tela de Configurações oferece a ação **"Enviar e-mail de teste"**, que envia uma mensagem de verificação para o e-mail de destino usando as credenciais SMTP configuradas. O resultado (sucesso ou erro detalhado) é exibido imediatamente na tela.
+
+**R45.** O painel local roda na porta **8421** por padrão. Se a porta estiver ocupada, o AchaDO tenta as três próximas portas disponíveis em sequência. Se nenhuma estiver livre, registra o erro no log e informa no ícone da bandeja; o painel não sobe, mas o restante da aplicação funciona normalmente.
+
+**R46.** O menu de contexto do ícone na bandeja do sistema oferece as seguintes ações: **Abrir painel** (abre `localhost:8421` no navegador padrão), **Executar ciclo agora** (dispara o pipeline diário manualmente, fora do horário programado), e **Sair** (encerra a aplicação completamente). O status do último ciclo (✅ / ⚠️ / ❌) é exibido como tooltip ao passar o cursor sobre o ícone.
 
 ---
 
