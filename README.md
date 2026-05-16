@@ -6,6 +6,16 @@ O **AchaDO** é uma aplicação desktop pessoal que coleta, indexa e monitora au
 
 Chega de acessar dezenas de sites diferentes, baixar PDFs manualmente e fazer buscas uma a uma. O AchaDO faz isso por você, todos os dias, em segundo plano.
 
+## Prévia
+
+| Dashboard | Termos de busca |
+|---|---|
+| ![Dashboard](docs/design/screenshots/dashboard.png) | ![Termos](docs/design/screenshots/termos.png) |
+
+| Achados | Configurações |
+|---|---|
+| ![Achados](docs/design/screenshots/achados.png) | ![Configurações](docs/design/screenshots/configuracoes.png) |
+
 ## Documentação
 
 - 📄 **[Requisitos do produto (PRD)](./docs/PRD.md)** — para quem é, problema que resolve, funcionalidades planejadas e métricas de sucesso.
