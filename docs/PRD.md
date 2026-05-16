@@ -140,6 +140,12 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 ---
 
+### Interface
+
+**R35.** O painel local suporta **modo claro e modo escuro**. O tema é aplicado automaticamente conforme a preferência configurada no sistema operacional e pode ser alternado manualmente na tela de Configurações.
+
+---
+
 ### Fora do escopo
 
 **R27.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
