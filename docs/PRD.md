@@ -110,51 +110,53 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R16.** O e-mail inclui, para cada match: o termo que disparou, o trecho contextual (~300 caracteres ao redor da ocorrência), o órgão emissor, a data da edição e o link direto para a publicação original no portal da fonte.
 
+**R17.** Todo domingo, após o ciclo diário, caso nenhum termo tenha gerado match durante os últimos sete dias, o AchaDO envia um e-mail de confirmação de vigilância informando que a aplicação está ativa e monitorando, mas não encontrou nenhuma ocorrência na semana. Esse e-mail não é enviado em semanas que já tiveram pelo menos um digest com achados.
+
 ---
 
 ### Execução e agendamento
 
-**R17.** O AchaDO se registra na inicialização do Windows ao ser instalado. O usuário não precisa abrir o aplicativo manualmente — ele sobe automaticamente com o sistema.
+**R18.** O AchaDO se registra na inicialização do Windows ao ser instalado. O usuário não precisa abrir o aplicativo manualmente — ele sobe automaticamente com o sistema.
 
-**R18.** A rotina diária executa inteiramente em segundo plano, com o painel fechado. Abrir o painel no navegador é opcional e não afeta a execução.
+**R19.** A rotina diária executa inteiramente em segundo plano, com o painel fechado. Abrir o painel no navegador é opcional e não afeta a execução.
 
-**R19.** Se o computador estava desligado no horário do ciclo programado, o job é executado imediatamente ao ligar o PC e iniciar o aplicativo — mesmo que seja horas depois do horário original. Nenhum dia útil é perdido por conta de o PC ter ficado desligado.
+**R20.** Se o computador estava desligado no horário do ciclo programado, o job é executado imediatamente ao ligar o PC e iniciar o aplicativo — mesmo que seja horas depois do horário original. Nenhum dia útil é perdido por conta de o PC ter ficado desligado.
 
-**R20.** O ciclo diário é executado **ao meio-dia no horário de Brasília (12:00 BRT)** por padrão. O usuário pode alterar esse horário na tela de Configurações. O horário é sempre interpretado no fuso horário de Brasília (`America/Sao_Paulo`), independentemente do fuso configurado no computador.
+**R21.** O ciclo diário é executado **ao meio-dia no horário de Brasília (12:00 BRT)** por padrão. O usuário pode alterar esse horário na tela de Configurações. O horário é sempre interpretado no fuso horário de Brasília (`America/Sao_Paulo`), independentemente do fuso configurado no computador.
 
-**R21.** O ciclo diário executa **no máximo uma vez por dia**. Múltiplos reinicios do PC no mesmo dia não disparam múltiplas execuções. Execuções manuais pelo Dashboard não contam como o ciclo automático do dia.
+**R22.** O ciclo diário executa **no máximo uma vez por dia**. Múltiplos reinicios do PC no mesmo dia não disparam múltiplas execuções. Execuções manuais pelo Dashboard não contam como o ciclo automático do dia.
 
-**R22.** Falhas em um ciclo não impedem o ciclo seguinte. O aplicativo nunca trava em estado de erro — registra a falha, sinaliza no ícone da bandeja e segue em espera.
+**R23.** Falhas em um ciclo não impedem o ciclo seguinte. O aplicativo nunca trava em estado de erro — registra a falha, sinaliza no ícone da bandeja e segue em espera.
 
 ---
 
 ### Privacidade e dados
 
-**R23.** Todos os dados (banco, índice, histórico, termos) ficam exclusivamente no computador do usuário. Não há servidor central, nuvem ou coleta de dados.
+**R24.** Todos os dados (banco, índice, histórico, termos) ficam exclusivamente no computador do usuário. Não há servidor central, nuvem ou coleta de dados.
 
-**R24.** A senha do SMTP é armazenada no chaveiro nativo do sistema operacional (Credential Manager no Windows). Nunca é gravada em texto claro no banco ou em arquivos de configuração.
+**R25.** A senha do SMTP é armazenada no chaveiro nativo do sistema operacional (Credential Manager no Windows). Nunca é gravada em texto claro no banco ou em arquivos de configuração.
 
-**R25.** As únicas conexões externas realizadas pelo AchaDO são: requisições aos portais dos Diários Oficiais (entrada de dados) e envio de e-mail via SMTP configurado pelo usuário (saída de notificações).
+**R26.** As únicas conexões externas realizadas pelo AchaDO são: requisições aos portais dos Diários Oficiais (entrada de dados) e envio de e-mail via SMTP configurado pelo usuário (saída de notificações).
 
 ---
 
 ### Fora do escopo
 
-**R26.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
+**R27.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
 
-**R27.** Diários Oficiais municipais (capitais ou demais municípios).
+**R28.** Diários Oficiais municipais (capitais ou demais municípios).
 
-**R28.** Diários da Justiça (federal, estaduais ou de tribunais superiores).
+**R29.** Diários da Justiça (federal, estaduais ou de tribunais superiores).
 
-**R29.** Versão SaaS, hospedada ou multi-tenant.
+**R30.** Versão SaaS, hospedada ou multi-tenant.
 
-**R30.** Análise ou interpretação jurídica do conteúdo encontrado.
+**R31.** Análise ou interpretação jurídica do conteúdo encontrado.
 
-**R31.** Integração com plataformas pagas de monitoramento de Diários Oficiais.
+**R32.** Integração com plataformas pagas de monitoramento de Diários Oficiais.
 
-**R32.** Distribuição como serviço comercial.
+**R33.** Distribuição como serviço comercial.
 
-**R33.** Dependência de qualquer serviço pago para funcionar.
+**R34.** Dependência de qualquer serviço pago para funcionar.
 
 ---
 

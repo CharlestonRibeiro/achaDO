@@ -198,6 +198,7 @@ erDiagram
         int id PK
         date data_envio
         int quantidade_matches
+        string tipo "digest|vigilancia"
         string status "enviada|falhou"
     }
     USUARIO {
@@ -293,6 +294,8 @@ erDiagram
 - Envia via SMTP usando as credenciais do próprio usuário.
 - Em sucesso, insere uma linha em `NOTIFICACAO` e atualiza `MATCH.notificacao_id` com o id gerado — vinculando os matches à notificação enviada.
 - Em falha de envio, nenhum match é vinculado; eles permanecem com `notificacao_id IS NULL` e são retentados no próximo ciclo (idempotência por ausência de FK).
+
+**E-mail de vigilância semanal (domingos).** Um segundo job, executado todo domingo após o ciclo diário, verifica se houve algum `MATCH` nos últimos sete dias. Se não houve nenhum, envia um e-mail de confirmação de vigilância informando que a aplicação está ativa e monitorando, mas não encontrou ocorrências na semana. Esse e-mail é registrado em `NOTIFICACAO` com `tipo=vigilancia` e `quantidade_matches=0`. Não é enviado em semanas que já tiveram pelo menos um digest com achados (`tipo=digest`).
 
 ## Stack tecnológica
 
@@ -437,10 +440,21 @@ Esta seção detalha como as [regras de execução autônoma do PRD](./PRD.md#ex
 **Horário e fuso do ciclo diário.** O job é agendado por padrão para **12:00 no fuso `America/Sao_Paulo`** (horário de Brasília), independentemente do fuso configurado no sistema operacional do usuário. O fuso é sempre especificado explicitamente no APScheduler — nunca inferido do SO. O usuário pode alterar o horário pela tela de Configurações; o fuso permanece fixo em `America/Sao_Paulo`.
 
 ```python
+# Job diário — executa todos os dias às 12h00 BRT
 scheduler.add_job(
     pipeline_diario,
     trigger=CronTrigger(hour=12, minute=0, timezone="America/Sao_Paulo"),
     id="ciclo_diario",
+    coalesce=True,
+    misfire_grace_time=None,
+)
+
+# Job semanal — executa todo domingo após o ciclo diário (12h15 BRT)
+# Envia e-mail de vigilância se nenhum match foi encontrado nos últimos 7 dias
+scheduler.add_job(
+    verificacao_semanal,
+    trigger=CronTrigger(day_of_week="sun", hour=12, minute=15, timezone="America/Sao_Paulo"),
+    id="vigilancia_semanal",
     coalesce=True,
     misfire_grace_time=None,
 )
