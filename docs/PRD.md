@@ -59,40 +59,51 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 ### Fontes monitoradas
 
-**R01.** O AchaDO monitora **exclusivamente** onze fontes oficiais, organizadas por âmbito:
+**R01.** O AchaDO monitora **exclusivamente** dezessete fontes oficiais, organizadas por âmbito:
 
-**Federal — cobre órgãos de todo o Brasil**
+**Poder Executivo Federal — cobre órgãos de todo o Brasil**
 
 | Fonte | Sigla | O que publica |
 |---|---|---|
-| Diário Oficial da União | DOU | Atos do Poder Executivo federal, concursos de autarquias, ministérios, agências reguladoras, universidades e tribunais federais |
+| Diário Oficial da União | DOU | Atos do Poder Executivo federal, concursos de autarquias, ministérios, agências reguladoras, universidades federais e órgãos da administração indireta |
 
-**Rondônia (RO) — cobre estado, judiciário e dois municípios**
+**Poder Judiciário Federal — nacional e região que abrange RO, AC e MT**
+
+| Fonte | Sigla | O que publica |
+|---|---|---|
+| DJe do Supremo Tribunal Federal | DJe-STF | Concursos e atos administrativos do STF |
+| DJe do Superior Tribunal de Justiça | DJe-STJ | Concursos e atos administrativos do STJ |
+| DJe do TRF da 1ª Região | DJe-TRF1 | Concursos da Justiça Federal de RO, AC, MT e demais estados da 1ª Região |
+| DEJT do Tribunal Superior do Trabalho | DEJT-TST | Concursos e atos administrativos do TST |
+| DEJT do TRT da 14ª Região | DEJT-TRT14 | Concursos da Justiça do Trabalho em RO e AC |
+| DEJT do TRT da 23ª Região | DEJT-TRT23 | Concursos da Justiça do Trabalho em MT |
+
+**Rondônia (RO) — estado, judiciário estadual e municípios**
 
 | Fonte | Sigla | O que publica |
 |---|---|---|
 | Diário Oficial do Estado de Rondônia | DOE-RO | Atos do governo estadual, secretarias, autarquias estaduais e municípios que publicam no DOE |
-| Diário da Justiça do Estado de Rondônia | DJ-RO | Atos do Tribunal de Justiça de RO (TJ-RO): concursos, portarias, editais do Poder Judiciário estadual |
+| Diário da Justiça do Estado de Rondônia | DJ-RO | Atos do TJ-RO: concursos, portarias e editais do Poder Judiciário estadual |
 | Diário Oficial do Município de Porto Velho | DOM-PVH | Atos da Prefeitura e Câmara Municipal de Porto Velho |
 | Diário Oficial do Município de Ariquemes | DOM-ARQ | Atos da Prefeitura e Câmara Municipal de Ariquemes |
 
-**Acre (AC) — cobre estado, judiciário e capital**
+**Acre (AC) — estado, judiciário estadual e capital**
 
 | Fonte | Sigla | O que publica |
 |---|---|---|
 | Diário Oficial do Estado do Acre | DOE-AC | Atos do governo estadual, secretarias, autarquias estaduais e municípios que publicam no DOE |
-| Diário da Justiça do Estado do Acre | DJ-AC | Atos do Tribunal de Justiça do AC (TJ-AC): concursos, portarias, editais do Poder Judiciário estadual |
+| Diário da Justiça do Estado do Acre | DJ-AC | Atos do TJ-AC: concursos, portarias e editais do Poder Judiciário estadual |
 | Diário Oficial do Município de Rio Branco | DOM-RBR | Atos da Prefeitura e Câmara Municipal de Rio Branco |
 
-**Mato Grosso (MT) — cobre estado, judiciário e capital**
+**Mato Grosso (MT) — estado, judiciário estadual e capital**
 
 | Fonte | Sigla | O que publica |
 |---|---|---|
 | Diário Oficial do Estado de Mato Grosso | DOE-MT | Atos do governo estadual, secretarias, autarquias estaduais e municípios que publicam no DOE |
-| Diário da Justiça do Estado de Mato Grosso | DJ-MT | Atos do Tribunal de Justiça de MT (TJ-MT): concursos, portarias, editais do Poder Judiciário estadual |
+| Diário da Justiça do Estado de Mato Grosso | DJ-MT | Atos do TJ-MT: concursos, portarias e editais do Poder Judiciário estadual |
 | Diário Oficial do Município de Cuiabá | DOM-CGB | Atos da Prefeitura e Câmara Municipal de Cuiabá |
 
-**R02.** Adicionar qualquer outra fonte — outro estado, outro município, autarquia, Diário da Justiça federal ou tribunal superior — exige desenvolvimento novo e decisão explícita de produto. Não é configuração de usuário.
+**R02.** Adicionar qualquer outra fonte exige desenvolvimento novo e decisão explícita de produto. Não é configuração de usuário.
 
 ---
 
@@ -198,7 +209,7 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R28.** Diários Oficiais municipais de qualquer município que não seja Porto Velho (RO), Ariquemes (RO), Rio Branco (AC) ou Cuiabá (MT).
 
-**R29.** Diários da Justiça federais e de tribunais superiores (STF, STJ, TST, STM, TSE).
+**R29.** Diário da Justiça do Tribunal Superior Eleitoral (TSE) e do Superior Tribunal Militar (STM).
 
 **R30.** Versão SaaS, hospedada ou multi-tenant.
 

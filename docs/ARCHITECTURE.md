@@ -25,7 +25,7 @@ Este documento descreve **como** o AchaDO é construído: componentes, fluxo de 
 
 O AchaDO é uma aplicação **monolítica desktop** escrita em Python, executada como um único processo na máquina do usuário. Não há servidor central, nem comunicação cliente-servidor com infraestrutura externa: tudo o que o usuário precisa (banco, índice, agendador, interface) roda localmente. A única dependência externa em tempo de execução é a saída para os portais dos Diários Oficiais dentro do escopo (entrada de dados) e o servidor SMTP do próprio usuário (saída de notificações).
 
-O conjunto de fontes oficiais monitoradas é **fixo por regra de produto** e consiste em quatro portais: o Diário Oficial da União (DOU) e os Diários Oficiais dos estados de Rondônia (DOE-RO), Acre (DOE-AC) e Mato Grosso (DOE-MT). Detalhes em [PRD — Escopo de fontes](./PRD.md#escopo-de-fontes).
+O conjunto de fontes oficiais monitoradas é **fixo por regra de produto** e consiste em dezessete portais: o Diário Oficial da União (DOU), os Diários Oficiais estaduais (DOE-RO/AC/MT), os Diários da Justiça estaduais (DJ-RO/AC/MT), os Diários Oficiais municipais das capitais e Ariquemes (DOM-PVH/ARQ/RBR/CGB) e os Diários da Justiça federais (DJe-STF/STJ/TRF1 e DEJT-TST/TRT14/TRT23). Detalhes em [PRD — Escopo de fontes](./PRD.md#escopo-de-fontes).
 
 Internamente, o sistema é estruturado em quatro componentes funcionais (Coletor, Indexador, Monitor, Notificador) coordenados por um agendador, que escrevem e leem de um único arquivo SQLite e que são configurados/inspecionados por um painel web local servido em `localhost`.
 
@@ -210,7 +210,7 @@ erDiagram
     }
 ```
 
-> **Nota — FONTE.** A tabela `FONTE` é populada por **seed fixo** com exatamente onze linhas: DOU, DOE-RO, DOE-AC, DOE-MT, DJ-RO, DJ-AC, DJ-MT, DOM-PVH, DOM-ARQ, DOM-RBR e DOM-CGB. Ela é modelada como entidade (e não como enum) para permitir armazenar metadados úteis (URL base, calendário, último sucesso de coleta), mas o conjunto de linhas não é editável pelo usuário — refletindo a [regra de escopo](./PRD.md#escopo-de-fontes).
+> **Nota — FONTE.** A tabela `FONTE` é populada por **seed fixo** com exatamente dezessete linhas: DOU, DOE-RO, DOE-AC, DOE-MT, DJ-RO, DJ-AC, DJ-MT, DOM-PVH, DOM-ARQ, DOM-RBR, DOM-CGB, DJe-STF, DJe-STJ, DJe-TRF1, DEJT-TST, DEJT-TRT14 e DEJT-TRT23. Ela é modelada como entidade (e não como enum) para permitir armazenar metadados úteis (URL base, calendário, último sucesso de coleta), mas o conjunto de linhas não é editável pelo usuário — refletindo a [regra de escopo](./PRD.md#escopo-de-fontes).
 >
 > **Nota — USUARIO.** A entidade `USUARIO` existe principalmente para isolamento de configuração e para suportar (no roadmap) o compartilhamento de listas de termos. No MVP, há apenas um usuário por instalação.
 
@@ -220,7 +220,7 @@ erDiagram
 
 **Responsabilidade.** Manter o banco de edições atualizado para cada fonte ativa, sem perder dias e sem duplicar trabalho.
 
-**Conjunto de fontes (fixo).** O Coletor trabalha sobre um conjunto fechado de dez fontes, definido como [regra de negócio do produto](./PRD.md#fontes-monitoradas): DOU, DOE-RO/AC/MT, DJ-RO/AC/MT e DOM-PVH/RBR/CGB. Cada fonte tem uma classe `Adapter` específica responsável por conhecer o calendário de publicação, a URL das edições e o formato. Adicionar uma nova fonte exige código novo e decisão de produto — não é configuração de usuário.
+**Conjunto de fontes (fixo).** O Coletor trabalha sobre um conjunto fechado de dezessete fontes, definido como [regra de negócio do produto](./PRD.md#fontes-monitoradas): DOU, DOE-RO/AC/MT, DJ-RO/AC/MT, DOM-PVH/ARQ/RBR/CGB, DJe-STF/STJ/TRF1 e DEJT-TST/TRT14/TRT23. Cada fonte tem uma classe `Adapter` específica responsável por conhecer o calendário de publicação, a URL das edições e o formato. Adicionar uma nova fonte exige código novo e decisão de produto — não é configuração de usuário.
 
 **Comportamento por tipo de fonte.**
 
@@ -358,7 +358,13 @@ achaDO/
 │       │   ├── dom_pvh.py       # Adapter DOM Porto Velho — PDF em memória
 │       │   ├── dom_arq.py       # Adapter DOM Ariquemes — PDF em memória
 │       │   ├── dom_rbr.py       # Adapter DOM Rio Branco — PDF em memória
-│       │   └── dom_cgb.py       # Adapter DOM Cuiabá — PDF em memória
+│       │   ├── dom_cgb.py       # Adapter DOM Cuiabá — PDF em memória
+│       │   ├── dje_stf.py       # Adapter DJe-STF — PDF em memória
+│       │   ├── dje_stj.py       # Adapter DJe-STJ — PDF em memória
+│       │   ├── dje_trf1.py      # Adapter DJe-TRF1 — PDF em memória
+│       │   ├── dejt_tst.py      # Adapter DEJT-TST — PDF em memória
+│       │   ├── dejt_trt14.py    # Adapter DEJT-TRT14 — PDF em memória
+│       │   └── dejt_trt23.py    # Adapter DEJT-TRT23 — PDF em memória
 │       │
 │       ├── indexer/             # Indexador — extração de texto e FTS5
 │       │   ├── __init__.py
@@ -407,7 +413,20 @@ achaDO/
     │   ├── test_dou.py
     │   ├── test_doe_ro.py
     │   ├── test_doe_ac.py
-    │   └── test_doe_mt.py
+    │   ├── test_doe_mt.py
+    │   ├── test_dj_ro.py
+    │   ├── test_dj_ac.py
+    │   ├── test_dj_mt.py
+    │   ├── test_dom_pvh.py
+    │   ├── test_dom_arq.py
+    │   ├── test_dom_rbr.py
+    │   ├── test_dom_cgb.py
+    │   ├── test_dje_stf.py
+    │   ├── test_dje_stj.py
+    │   ├── test_dje_trf1.py
+    │   ├── test_dejt_tst.py
+    │   ├── test_dejt_trt14.py
+    │   └── test_dejt_trt23.py
     ├── indexer/
     │   ├── test_html.py
     │   ├── test_pdf.py
@@ -420,7 +439,7 @@ achaDO/
 
 **Convenções:**
 - Cada componente (`collector`, `indexer`, `monitor`, `notifier`, `scheduler`, `panel`, `tray`) é um subpacote com `__init__.py` que expõe apenas a interface pública do componente — os demais módulos são detalhes internos.
-- `base.py` no `collector/` define o contrato `Adapter` que todos os adapters de fonte implementam. Adicionar uma quinta fonte significa criar um novo arquivo `doe_xx.py` sem tocar nos demais.
+- `base.py` no `collector/` define o contrato `Adapter` que todos os adapters de fonte implementam. Adicionar uma nova fonte significa criar um novo arquivo de adapter sem tocar nos demais.
 - `tests/` espelha a estrutura de `src/achado/` para facilitar navegação. Fixtures de banco de dados (SQLite em memória) ficam centralizadas em `conftest.py`.
 
 ## Princípios de design
