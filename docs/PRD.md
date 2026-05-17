@@ -59,7 +59,7 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 ### Fontes monitoradas
 
-**R01.** O AchaDO monitora **exclusivamente** dez fontes oficiais:
+**R01.** O AchaDO monitora **exclusivamente** onze fontes oficiais:
 
 | Esfera | Fonte | Sigla | UF |
 |---|---|---|---|
@@ -71,6 +71,7 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 | Judicial | Diário da Justiça do Estado do Acre (TJ-AC) | DJ-AC | AC |
 | Judicial | Diário da Justiça do Estado de Mato Grosso (TJ-MT) | DJ-MT | MT |
 | Municipal | Diário Oficial do Município de Porto Velho | DOM-PVH | RO |
+| Municipal | Diário Oficial do Município de Ariquemes | DOM-ARQ | RO |
 | Municipal | Diário Oficial do Município de Rio Branco | DOM-RBR | AC |
 | Municipal | Diário Oficial do Município de Cuiabá | DOM-CGB | MT |
 
@@ -178,7 +179,7 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R27.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
 
-**R28.** Diários Oficiais municipais de qualquer município que não seja Porto Velho (RO), Rio Branco (AC) ou Cuiabá (MT).
+**R28.** Diários Oficiais municipais de qualquer município que não seja Porto Velho (RO), Ariquemes (RO), Rio Branco (AC) ou Cuiabá (MT).
 
 **R29.** Diários da Justiça federais e de tribunais superiores (STF, STJ, TST, STM, TSE).
 

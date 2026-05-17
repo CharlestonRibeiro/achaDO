@@ -210,7 +210,7 @@ erDiagram
     }
 ```
 
-> **Nota — FONTE.** A tabela `FONTE` é populada por **seed fixo** com exatamente dez linhas: DOU, DOE-RO, DOE-AC, DOE-MT, DJ-RO, DJ-AC, DJ-MT, DOM-PVH, DOM-RBR e DOM-CGB. Ela é modelada como entidade (e não como enum) para permitir armazenar metadados úteis (URL base, calendário, último sucesso de coleta), mas o conjunto de linhas não é editável pelo usuário — refletindo a [regra de escopo](./PRD.md#escopo-de-fontes).
+> **Nota — FONTE.** A tabela `FONTE` é populada por **seed fixo** com exatamente onze linhas: DOU, DOE-RO, DOE-AC, DOE-MT, DJ-RO, DJ-AC, DJ-MT, DOM-PVH, DOM-ARQ, DOM-RBR e DOM-CGB. Ela é modelada como entidade (e não como enum) para permitir armazenar metadados úteis (URL base, calendário, último sucesso de coleta), mas o conjunto de linhas não é editável pelo usuário — refletindo a [regra de escopo](./PRD.md#escopo-de-fontes).
 >
 > **Nota — USUARIO.** A entidade `USUARIO` existe principalmente para isolamento de configuração e para suportar (no roadmap) o compartilhamento de listas de termos. No MVP, há apenas um usuário por instalação.
 
@@ -355,6 +355,7 @@ achaDO/
 │       │   ├── dj_ac.py         # Adapter DJ-AC (TJ-AC) — PDF em memória
 │       │   ├── dj_mt.py         # Adapter DJ-MT (TJ-MT) — PDF em memória
 │       │   ├── dom_pvh.py       # Adapter DOM Porto Velho — PDF em memória
+│       │   ├── dom_arq.py       # Adapter DOM Ariquemes — PDF em memória
 │       │   ├── dom_rbr.py       # Adapter DOM Rio Branco — PDF em memória
 │       │   └── dom_cgb.py       # Adapter DOM Cuiabá — PDF em memória
 │       │
