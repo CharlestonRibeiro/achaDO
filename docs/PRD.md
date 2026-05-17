@@ -253,7 +253,7 @@ Portais de Diários Oficiais são fontes externas fora do controle do produto. O
 
 | Risco | Probabilidade | Mitigação |
 |---|---|---|
-| **Mudança de layout ou URL** do portal | Alta (acontece todo ano) | Adapters isolados por fonte: corrigir um não afeta os outros; falha reportada no Dashboard sem interromper demais fontes. |
+| **Mudança de layout ou URL** do portal | Alta (acontece todo ano) | **Detecção automática:** após 4 tentativas com backoff, a fonte é marcada como `quebrada`; o Dashboard exibe o erro com timestamp e tipo de falha; o ícone da bandeja muda para ⚠️; as demais fontes continuam funcionando. **Recuperação manual:** a URL base fica em `FONTE.url_base` no banco, mas mudanças estruturais (layout, autenticação, formato) sempre exigem atualização do adapter e distribuição de novo `.exe`. Após a correção, o usuário força um novo ciclo pelo Dashboard e a fonte volta a `ativa`. O DOU é o menos suscetível: usa a API pública da Imprensa Nacional como primária, com scraping como fallback. |
 | **Indisponibilidade temporária** do portal | Média | Retry com backoff exponencial (4 tentativas). Se persistir, ciclo segue sem a fonte e registra falha no log. |
 | **CAPTCHA ou bloqueio de bots** | Baixa–Média | O AchaDO acessa as mesmas URLs públicas que qualquer navegador; se bloqueado, a mitigação é manual (ajuste de headers, intervalo entre requests). Não há solução automatizada — o usuário é avisado pelo Dashboard. |
 | **Remoção ou mudança de API** do DOU | Baixa | O DOU possui API pública documentada (diariooficial.gov.br); o Adapter monitora essa API como fonte primária, com fallback para scraping direto. |

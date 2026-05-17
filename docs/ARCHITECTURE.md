@@ -238,9 +238,10 @@ erDiagram
 - Calcula SHA-256 do conteúdo recebido (HTML ou bytes do PDF) antes de enfileirar para o Indexador.
 - Se o hash já existe em `EDICAO`, a edição é ignorada — detecta republicações e conteúdo duplicado por URLs diferentes.
 
-*Tolerância a falhas (ambos os caminhos):*
+*Tolerância a falhas e mudança de URL (ambos os caminhos):*
 - Em falha de rede: **retry com backoff exponencial** (4 tentativas, intervalo inicial de 30 s).
 - Em falha persistente: marca a fonte como `quebrada` no banco e segue para a próxima — uma fonte com problema não interrompe o ciclo das outras.
+- A URL base de cada fonte é armazenada em `FONTE.url_base` no banco (não hardcoded no código), o que permite corrigi-la via migração sem recompilar. No entanto, mudanças estruturais no portal — novo layout, autenticação, mudança de formato — sempre exigem atualização do adapter e distribuição de um novo `.exe`, pois a lógica de scraping/parsing está no código Python do adapter.
 
 **Saída.** O Coletor não grava arquivos em disco. Entrega conteúdo em memória ao Indexador; é o Indexador que registra a linha em `EDICAO` (com `status=indexada` ou `status=falhou`) após concluir o processamento.
 
