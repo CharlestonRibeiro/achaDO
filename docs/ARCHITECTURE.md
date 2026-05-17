@@ -155,7 +155,7 @@ erDiagram
         int id PK
         string nome
         string url_base
-        string esfera "federal|estadual"
+        string esfera "federal|estadual|judicial|municipal"
         string uf "BR|RO|AC|MT"
         string status "ativa|pausada|quebrada"
     }
@@ -210,7 +210,7 @@ erDiagram
     }
 ```
 
-> **Nota — FONTE.** A tabela `FONTE` é populada por **seed fixo** com exatamente quatro linhas: DOU, DOE-RO, DOE-AC e DOE-MT. Ela é modelada como entidade (e não como enum) para permitir armazenar metadados úteis (URL base, calendário, último sucesso de coleta), mas o conjunto de linhas não é editável pelo usuário — refletindo a [regra de escopo](./PRD.md#escopo-de-fontes).
+> **Nota — FONTE.** A tabela `FONTE` é populada por **seed fixo** com exatamente dez linhas: DOU, DOE-RO, DOE-AC, DOE-MT, DJ-RO, DJ-AC, DJ-MT, DOM-PVH, DOM-RBR e DOM-CGB. Ela é modelada como entidade (e não como enum) para permitir armazenar metadados úteis (URL base, calendário, último sucesso de coleta), mas o conjunto de linhas não é editável pelo usuário — refletindo a [regra de escopo](./PRD.md#escopo-de-fontes).
 >
 > **Nota — USUARIO.** A entidade `USUARIO` existe principalmente para isolamento de configuração e para suportar (no roadmap) o compartilhamento de listas de termos. No MVP, há apenas um usuário por instalação.
 
@@ -220,7 +220,7 @@ erDiagram
 
 **Responsabilidade.** Manter o banco de edições atualizado para cada fonte ativa, sem perder dias e sem duplicar trabalho.
 
-**Conjunto de fontes (fixo).** O Coletor trabalha sobre um conjunto fechado de quatro fontes, definido como [regra de negócio do produto](./PRD.md#escopo-de-fontes): DOU, DOE-RO, DOE-AC e DOE-MT. Cada fonte tem uma classe `Adapter` específica responsável por conhecer o calendário de publicação, a URL das edições e o formato (PDF, HTML). Adicionar uma quinta fonte exige código novo e decisão de produto — não é configuração de usuário.
+**Conjunto de fontes (fixo).** O Coletor trabalha sobre um conjunto fechado de dez fontes, definido como [regra de negócio do produto](./PRD.md#fontes-monitoradas): DOU, DOE-RO/AC/MT, DJ-RO/AC/MT e DOM-PVH/RBR/CGB. Cada fonte tem uma classe `Adapter` específica responsável por conhecer o calendário de publicação, a URL das edições e o formato. Adicionar uma nova fonte exige código novo e decisão de produto — não é configuração de usuário.
 
 **Comportamento por tipo de fonte.**
 
@@ -229,7 +229,7 @@ erDiagram
 - Para cada ato, faz GET da página HTML individual com `httpx`.
 - Passa o HTML (em memória) diretamente para o Indexador. Nenhum arquivo é gravado em disco.
 
-*DOEs — RO, AC, MT (PDF em memória):*
+*DOEs — RO, AC, MT / DJs — RO, AC, MT / DOMs — Porto Velho, Rio Branco, Cuiabá (PDF em memória):*
 - Descobre a URL da edição do dia a partir do calendário ou página de listagem do portal.
 - Baixa o PDF com `httpx` **diretamente para um buffer em memória** (`bytes`). Para portais que exigem JavaScript, usa `playwright` e captura o PDF via download interceptado.
 - Passa os bytes para o Indexador. **Os bytes são descartados da memória após o Indexador concluir** — nenhum PDF é salvo em disco.
@@ -350,7 +350,13 @@ achaDO/
 │       │   ├── dou.py           # Adapter DOU — HTML por ato via API/scraping
 │       │   ├── doe_ro.py        # Adapter DOE-RO — PDF em memória
 │       │   ├── doe_ac.py        # Adapter DOE-AC — PDF em memória
-│       │   └── doe_mt.py        # Adapter DOE-MT — PDF em memória
+│       │   ├── doe_mt.py        # Adapter DOE-MT — PDF em memória
+│       │   ├── dj_ro.py         # Adapter DJ-RO (TJ-RO) — PDF em memória
+│       │   ├── dj_ac.py         # Adapter DJ-AC (TJ-AC) — PDF em memória
+│       │   ├── dj_mt.py         # Adapter DJ-MT (TJ-MT) — PDF em memória
+│       │   ├── dom_pvh.py       # Adapter DOM Porto Velho — PDF em memória
+│       │   ├── dom_rbr.py       # Adapter DOM Rio Branco — PDF em memória
+│       │   └── dom_cgb.py       # Adapter DOM Cuiabá — PDF em memória
 │       │
 │       ├── indexer/             # Indexador — extração de texto e FTS5
 │       │   ├── __init__.py

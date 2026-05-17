@@ -59,16 +59,22 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 ### Fontes monitoradas
 
-**R01.** O AchaDO monitora **exclusivamente** quatro fontes oficiais:
+**R01.** O AchaDO monitora **exclusivamente** dez fontes oficiais:
 
-| Esfera | Fonte | Sigla |
-|---|---|---|
-| Federal | Diário Oficial da União | DOU |
-| Estadual | Diário Oficial do Estado de Rondônia | DOE-RO |
-| Estadual | Diário Oficial do Estado do Acre | DOE-AC |
-| Estadual | Diário Oficial do Estado de Mato Grosso | DOE-MT |
+| Esfera | Fonte | Sigla | UF |
+|---|---|---|---|
+| Federal | Diário Oficial da União | DOU | BR |
+| Estadual | Diário Oficial do Estado de Rondônia | DOE-RO | RO |
+| Estadual | Diário Oficial do Estado do Acre | DOE-AC | AC |
+| Estadual | Diário Oficial do Estado de Mato Grosso | DOE-MT | MT |
+| Judicial | Diário da Justiça do Estado de Rondônia (TJ-RO) | DJ-RO | RO |
+| Judicial | Diário da Justiça do Estado do Acre (TJ-AC) | DJ-AC | AC |
+| Judicial | Diário da Justiça do Estado de Mato Grosso (TJ-MT) | DJ-MT | MT |
+| Municipal | Diário Oficial do Município de Porto Velho | DOM-PVH | RO |
+| Municipal | Diário Oficial do Município de Rio Branco | DOM-RBR | AC |
+| Municipal | Diário Oficial do Município de Cuiabá | DOM-CGB | MT |
 
-**R02.** Adicionar qualquer outra fonte — outro estado, município, autarquia, Diário da Justiça ou tribunal — exige desenvolvimento novo e decisão explícita de produto. Não é configuração de usuário.
+**R02.** Adicionar qualquer outra fonte — outro estado, outro município, autarquia, Diário da Justiça federal ou tribunal superior — exige desenvolvimento novo e decisão explícita de produto. Não é configuração de usuário.
 
 ---
 
@@ -172,9 +178,9 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 **R27.** Diários Oficiais de qualquer estado que não RO, AC ou MT.
 
-**R28.** Diários Oficiais municipais (capitais ou demais municípios).
+**R28.** Diários Oficiais municipais de qualquer município que não seja Porto Velho (RO), Rio Branco (AC) ou Cuiabá (MT).
 
-**R29.** Diários da Justiça (federal, estaduais ou de tribunais superiores).
+**R29.** Diários da Justiça federais e de tribunais superiores (STF, STJ, TST, STM, TSE).
 
 **R30.** Versão SaaS, hospedada ou multi-tenant.
 
