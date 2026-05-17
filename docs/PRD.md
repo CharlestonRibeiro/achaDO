@@ -59,21 +59,38 @@ Esta seção reúne todas as regras que governam o comportamento do AchaDO. São
 
 ### Fontes monitoradas
 
-**R01.** O AchaDO monitora **exclusivamente** onze fontes oficiais:
+**R01.** O AchaDO monitora **exclusivamente** onze fontes oficiais, organizadas por âmbito:
 
-| Esfera | Fonte | Sigla | UF |
-|---|---|---|---|
-| Federal | Diário Oficial da União | DOU | BR |
-| Estadual | Diário Oficial do Estado de Rondônia | DOE-RO | RO |
-| Estadual | Diário Oficial do Estado do Acre | DOE-AC | AC |
-| Estadual | Diário Oficial do Estado de Mato Grosso | DOE-MT | MT |
-| Judicial | Diário da Justiça do Estado de Rondônia (TJ-RO) | DJ-RO | RO |
-| Judicial | Diário da Justiça do Estado do Acre (TJ-AC) | DJ-AC | AC |
-| Judicial | Diário da Justiça do Estado de Mato Grosso (TJ-MT) | DJ-MT | MT |
-| Municipal | Diário Oficial do Município de Porto Velho | DOM-PVH | RO |
-| Municipal | Diário Oficial do Município de Ariquemes | DOM-ARQ | RO |
-| Municipal | Diário Oficial do Município de Rio Branco | DOM-RBR | AC |
-| Municipal | Diário Oficial do Município de Cuiabá | DOM-CGB | MT |
+**Federal — cobre órgãos de todo o Brasil**
+
+| Fonte | Sigla | O que publica |
+|---|---|---|
+| Diário Oficial da União | DOU | Atos do Poder Executivo federal, concursos de autarquias, ministérios, agências reguladoras, universidades e tribunais federais |
+
+**Rondônia (RO) — cobre estado, judiciário e dois municípios**
+
+| Fonte | Sigla | O que publica |
+|---|---|---|
+| Diário Oficial do Estado de Rondônia | DOE-RO | Atos do governo estadual, secretarias, autarquias estaduais e municípios que publicam no DOE |
+| Diário da Justiça do Estado de Rondônia | DJ-RO | Atos do Tribunal de Justiça de RO (TJ-RO): concursos, portarias, editais do Poder Judiciário estadual |
+| Diário Oficial do Município de Porto Velho | DOM-PVH | Atos da Prefeitura e Câmara Municipal de Porto Velho |
+| Diário Oficial do Município de Ariquemes | DOM-ARQ | Atos da Prefeitura e Câmara Municipal de Ariquemes |
+
+**Acre (AC) — cobre estado, judiciário e capital**
+
+| Fonte | Sigla | O que publica |
+|---|---|---|
+| Diário Oficial do Estado do Acre | DOE-AC | Atos do governo estadual, secretarias, autarquias estaduais e municípios que publicam no DOE |
+| Diário da Justiça do Estado do Acre | DJ-AC | Atos do Tribunal de Justiça do AC (TJ-AC): concursos, portarias, editais do Poder Judiciário estadual |
+| Diário Oficial do Município de Rio Branco | DOM-RBR | Atos da Prefeitura e Câmara Municipal de Rio Branco |
+
+**Mato Grosso (MT) — cobre estado, judiciário e capital**
+
+| Fonte | Sigla | O que publica |
+|---|---|---|
+| Diário Oficial do Estado de Mato Grosso | DOE-MT | Atos do governo estadual, secretarias, autarquias estaduais e municípios que publicam no DOE |
+| Diário da Justiça do Estado de Mato Grosso | DJ-MT | Atos do Tribunal de Justiça de MT (TJ-MT): concursos, portarias, editais do Poder Judiciário estadual |
+| Diário Oficial do Município de Cuiabá | DOM-CGB | Atos da Prefeitura e Câmara Municipal de Cuiabá |
 
 **R02.** Adicionar qualquer outra fonte — outro estado, outro município, autarquia, Diário da Justiça federal ou tribunal superior — exige desenvolvimento novo e decisão explícita de produto. Não é configuração de usuário.
 
